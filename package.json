@@ -10,14 +10,19 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:devtools-extension.helloWorld"
+    "onCommand:devtools-extension.hideIgnored",
+    "onCommand:devtools-extension.showIgnored"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "devtools-extension.helloWorld",
-        "title": "Hello World"
+        "command": "devtools-extension.hideIgnored",
+        "title": "Hide .gitignore files"
+      },
+      {
+        "command": "devtools-extension.showIgnored",
+        "title": "Show .gitignore files"
       }
     ]
   },
