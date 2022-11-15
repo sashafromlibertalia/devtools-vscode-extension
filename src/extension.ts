@@ -8,6 +8,11 @@ const data = fs.readFileSync(`${folderPath}/.gitignore`, 'utf8');
 const files = data.split('\n').filter((f: string) => f && !f.includes('#'));
 
 export function activate(context: vscode.ExtensionContext) {
+	if (!files.length) {
+		vscode.window.showInformationMessage('No files to ignore');
+		return;
+	}
+
 	const hideCommand = 'devtools-extension.hideIgnored';
 	const hideCommandHandler = () => {
 		const config = vscode.workspace.getConfiguration();
@@ -26,6 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
 			acc[file] = false;
 			return acc;
 		}, {}), false);
+
 		vscode.window.showWarningMessage(`Showing ${files.length} files`);
 	};
 
